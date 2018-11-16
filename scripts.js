@@ -29,8 +29,19 @@ function paintToCanvas(){
 }
 
 function takePhoto(){
+	// play sound
 	snap.currentTime = 0;
 	snap.play();
+
+	// take the data out of the canvas
+	const data = canvas.toDataURL('image/jpeg');
+	console.log(data);
+	const link = document.createElement('a');
+	link.href = data;
+	link.setAttribute('download','handsome')
+	// link.textContent = 'Download image';
+	link.innerHTML =  `<img src="${data}" alt="Handsome man" />`
+	strip.insertBefore(link, strip.firstChild);
 }
 
 getVideo();
